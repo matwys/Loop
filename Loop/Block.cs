@@ -50,21 +50,30 @@ namespace Loop
         }
         public void Block_Paint(PaintEventArgs e)
         {
+            int countTrue = 0;
             if(north == true)
             {
                 e.Graphics.FillRectangle(Brushes.Cyan, xTopLeft + 25, yTopLeft, 10, 35);
+                countTrue++;
             }
             if(south == true)
             {
                 e.Graphics.FillRectangle(Brushes.Cyan, xTopLeft + 25, yTopLeft+25, 10, 35);
+                countTrue++;
             }
             if(east == true)
             {
                 e.Graphics.FillRectangle(Brushes.Cyan, xTopLeft + 25, yTopLeft + 25, 35, 10);
+                countTrue++;
             }
             if (west == true)
             {
                 e.Graphics.FillRectangle(Brushes.Cyan, xTopLeft, yTopLeft + 25, 35, 10);
+                countTrue++;
+            }
+            if(countTrue == 1)
+            {
+                e.Graphics.FillRectangle(Brushes.Cyan, xTopLeft+20, yTopLeft + 20, 20, 20);
             }
             //e.Graphics.DrawImage(new Bitmap("../../Resources/" +North01()+South01()+East01()+West01()+ ".png"), xTopLeft, yTopLeft, 60, 60);
         }
