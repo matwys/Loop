@@ -1,9 +1,3 @@
-static class Constants
-{
-    public const int Width = 6;
-    public const int Height = 6;
-}
-
 namespace Loop
 {
     public partial class FormView : Form
@@ -12,11 +6,12 @@ namespace Loop
         //private bool change = false;
         private LoopGenerator generator = new LoopGenerator(Constants.Height, Constants.Width);
         private bool complite = false;
+        int moves;
         public FormView()
         {
             InitializeComponent();
             generator.MatrixMove();
-
+            moves = 0;
             for(int i = 0; i < Constants.Height; i++)
             {
                 for(int j = 0; j < Constants.Width; j++)
@@ -25,6 +20,8 @@ namespace Loop
                 }
             }
             complite = Check_Loop();
+            txtMoves.Text = "Moves: " + moves;
+            txtFinish.Text = "";
         }
 
         private void FormView_Load(object sender, EventArgs e)
@@ -46,13 +43,15 @@ namespace Loop
         private void FormView_Click(object sender, EventArgs e)
         {
             int _x, _y;
-            _x = MousePosition.X - this.Location.X - 8;
-            _y = MousePosition.Y - this.Location.Y - 30;
+            _x = MousePosition.X - this.Location.X - 10;
+            _y = MousePosition.Y - this.Location.Y - 35;
 
             if (_x > 50 && _x < Constants.Width * 60+50 && _y > 50 && _y < Constants.Height * 60 + 50)
             {
                 blockMatrix[(_y - 50) / 60, (_x - 50) / 60].Block_Change();
+                txtFinish.Text = "";
                 complite = Check_Loop();
+                txtMoves.Text = "Moves: " + ++moves;
                 //change = true;
                 Invalidate();
             }
@@ -80,7 +79,14 @@ namespace Loop
                     if (j == Constants.Width - 1 && (blockMatrix[i, j].east == true) ) return false;
                 }
             }
+            txtFinish.Text = "Looped";
             return true;
         }
     }
+}
+
+static class Constants
+{
+    public const int Width = 6;
+    public const int Height = 10;
 }

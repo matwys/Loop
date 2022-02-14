@@ -59,28 +59,38 @@ namespace Loop
             int countTrue = 0;
             if(north == true)
             {
-                e.Graphics.FillRectangle(color, xTopLeft + 25, yTopLeft, 10, 35);
+                e.Graphics.FillRectangle(color, xTopLeft + 25, yTopLeft, 10, 25);
                 countTrue++;
             }
             if(south == true)
             {
-                e.Graphics.FillRectangle(color, xTopLeft + 25, yTopLeft+25, 10, 35);
+                e.Graphics.FillRectangle(color, xTopLeft + 25, yTopLeft+35, 10, 25);
                 countTrue++;
             }
             if(east == true)
             {
-                e.Graphics.FillRectangle(color, xTopLeft + 25, yTopLeft + 25, 35, 10);
+                e.Graphics.FillRectangle(color, xTopLeft + 35, yTopLeft + 25, 25, 10);
                 countTrue++;
             }
             if (west == true)
             {
-                e.Graphics.FillRectangle(color, xTopLeft, yTopLeft + 25, 35, 10);
+                e.Graphics.FillRectangle(color, xTopLeft, yTopLeft + 25, 25, 10);
                 countTrue++;
             }
-            if(countTrue == 1)
+            if(countTrue > 1)
             {
-                e.Graphics.FillRectangle(color, xTopLeft+20, yTopLeft + 20, 20, 20);
+                e.Graphics.FillRectangle(color, xTopLeft+25, yTopLeft + 25, 10, 10);
             }
+            else if (countTrue == 1)
+            {
+                e.Graphics.FillRectangle(color, xTopLeft + 20, yTopLeft + 20, 5, 20);
+                e.Graphics.FillRectangle(color, xTopLeft + 20, yTopLeft + 20, 20, 5);
+                
+                e.Graphics.FillRectangle(color, xTopLeft + 20, yTopLeft + 35, 20, 5);
+                
+                e.Graphics.FillRectangle(color, xTopLeft + 35, yTopLeft + 20, 5, 20);
+            }
+
         }
 
         public void Block_Change()
